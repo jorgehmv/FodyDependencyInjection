@@ -7,7 +7,7 @@
     <authors>Jorge Martinez</authors>
     <owners>jorgehmv</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-    <projectUrl>https://github.com/jorgehmv/Fody.DependencyInjection</projectUrl>
+    <projectUrl>https://github.com/jorgehmv/FodyDependencyInjection</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Automatic Spring.Net dependency injection with Fody addins.</description>
     <language>en-US</language>
