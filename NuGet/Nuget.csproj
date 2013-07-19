@@ -34,31 +34,31 @@
   <Target Name="ReBuild" DependsOnTargets="NuGetBuild" />
   <UsingTask TaskName="PepitaPackage.WeavingTask" AssemblyFile="$(SolutionDir)Tools\Pepita\PepitaPackage.dll" />
   <Target Name="NuGetBuild" DependsOnTargets="Clean">
-    <!--AutofacSpring-->
+    <!--Autofac.Fody-->
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Autofac" />
     <Copy SourceFiles="$(SolutionDir)NuGet\FodyAutofac.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
     <Copy SourceFiles="$(ProjectDir)install.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac\Tools" />
     <Copy SourceFiles="$(ProjectDir)uninstall.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac\Tools" />
-    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
-    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
+    <Copy SourceFiles="$(SolutionDir)FodyAutofac\bin\$(ConfigurationName)\Autofac.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
+    <Copy SourceFiles="$(SolutionDir)FodyAutofac\bin\$(ConfigurationName)\Autofac.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
     <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac\Lib" />
     <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild\Autofac" MetadataAssembly="$(SolutionDir)FodyAutofac\bin\$(ConfigurationName)\Autofac.Fody.dll" />
-    <!--FodySpring-->
+    <!--Spring.Fody-->
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Spring" />
     <Copy SourceFiles="$(SolutionDir)NuGet\FodySpring.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild\Spring" />
     <Copy SourceFiles="$(ProjectDir)install.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Tools" />
     <Copy SourceFiles="$(ProjectDir)uninstall.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Tools" />
     <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Spring" />
     <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Spring" />
-    <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40" />
+    <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Lib" />
     <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild\Spring" MetadataAssembly="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" />
-    <!--NinjectSpring-->
+    <!--Ninject.Fody-->
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Ninject" />
     <Copy SourceFiles="$(SolutionDir)NuGet\FodyNinject.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
     <Copy SourceFiles="$(ProjectDir)install.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject\Tools" />
     <Copy SourceFiles="$(ProjectDir)uninstall.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject\Tools" />
-    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
-    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
+    <Copy SourceFiles="$(SolutionDir)FodyNinject\bin\$(ConfigurationName)\Ninject.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
+    <Copy SourceFiles="$(SolutionDir)FodyNinject\bin\$(ConfigurationName)\Ninject.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
     <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject\Lib" />
     <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild\Ninject" MetadataAssembly="$(SolutionDir)FodyNinject\bin\$(ConfigurationName)\Ninject.Fody.dll" />
   </Target>
