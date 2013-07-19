@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63786CE5-D899-43DF-AD4E-C2CA3BAC3FC2}</ProjectGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <ConfigurationName>Debug</ConfigurationName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <ConfigurationName>Release</ConfigurationName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="FodyAutofac.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FodyNinject.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="install.ps1" />
+    <None Include="FodySpring.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="uninstall.ps1" />
+  </ItemGroup>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(SolutionDir)NuGetBuild" />
+  </Target>
+  <Target Name="Build" DependsOnTargets="NuGetBuild" />
+  <Target Name="ReBuild" DependsOnTargets="NuGetBuild" />
+  <UsingTask TaskName="PepitaPackage.WeavingTask" AssemblyFile="$(SolutionDir)Tools\Pepita\PepitaPackage.dll" />
+  <Target Name="NuGetBuild" DependsOnTargets="Clean">
+    <!--AutofacSpring-->
+    <MakeDir Directories="$(SolutionDir)NuGetBuild\Autofac" />
+    <Copy SourceFiles="$(SolutionDir)NuGet\FodyAutofac.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
+    <Copy SourceFiles="$(ProjectDir)install.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac\Tools" />
+    <Copy SourceFiles="$(ProjectDir)uninstall.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac\Tools" />
+    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
+    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac" />
+    <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Autofac\Lib" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild\Autofac" MetadataAssembly="$(SolutionDir)FodyAutofac\bin\$(ConfigurationName)\Autofac.Fody.dll" />
+    <!--FodySpring-->
+    <MakeDir Directories="$(SolutionDir)NuGetBuild\Spring" />
+    <Copy SourceFiles="$(SolutionDir)NuGet\FodySpring.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild\Spring" />
+    <Copy SourceFiles="$(ProjectDir)install.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Tools" />
+    <Copy SourceFiles="$(ProjectDir)uninstall.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Tools" />
+    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Spring" />
+    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Spring" />
+    <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Spring\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild\Spring" MetadataAssembly="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" />
+    <!--NinjectSpring-->
+    <MakeDir Directories="$(SolutionDir)NuGetBuild\Ninject" />
+    <Copy SourceFiles="$(SolutionDir)NuGet\FodyNinject.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
+    <Copy SourceFiles="$(ProjectDir)install.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject\Tools" />
+    <Copy SourceFiles="$(ProjectDir)uninstall.ps1" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject\Tools" />
+    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
+    <Copy SourceFiles="$(SolutionDir)FodySpring\bin\$(ConfigurationName)\Spring.Fody.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject" />
+    <Copy SourceFiles="$(SolutionDir)AssemblyToReference\bin\$(ConfigurationName)\FodyDependencyInjection.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Ninject\Lib" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild\Ninject" MetadataAssembly="$(SolutionDir)FodyNinject\bin\$(ConfigurationName)\Ninject.Fody.dll" />
+  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\AssemblyToReference\AssemblyToReference.csproj">
+      <Project>{6e8b2d17-8ef3-4ce8-8c5c-63396563b92c}</Project>
+      <Name>AssemblyToReference</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fody_ToBeDeleted.txt" />
+  </ItemGroup>
+</Project>

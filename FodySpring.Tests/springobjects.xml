@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  
+  <object name="ClassWithNoCtors" type="AssemblyToProcess.ClassWithNoCtors, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+  </object>
+
+  <object name="ClassWithStaticCtor" type="AssemblyToProcess.ClassWithStaticCtor, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+  </object>
+
+  <object name="ClassWithNoDefaultCtor" type="AssemblyToProcess.ClassWithNoDefaultCtor, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+  </object>
+
+  <object name="ClassUsingInjectedPropertyInsideCtor" type="AssemblyToProcess.ClassUsingInjectedPropertyInsideCtor, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+  </object>
+
+  <object name="ClassWithManyCtors" type="AssemblyToProcess.ClassWithManyCtors, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+  </object>
+
+  <object name="ClassBase" type="AssemblyToProcess.ClassBase, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+  </object>
+
+  <object name="ClassConfigurableInheritingFromBase" type="AssemblyToProcess.ClassConfigurableInheritingFromBase, AssemblyToProcess" singleton="false">
+    <property name="InjectedService" ref="Service" />
+    <property name="InjectedService2" ref="Service2" />
+  </object>
+
+  <object name="Service" type="AssemblyToProcess.Service, AssemblyToProcess" >
+  </object>
+
+  <object name="Service2" type="AssemblyToProcess.Service2, AssemblyToProcess" >
+  </object>
+
+</objects>

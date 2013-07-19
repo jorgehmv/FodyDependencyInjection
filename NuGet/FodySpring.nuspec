@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Spring.Fody</title>
+    <authors>Jorge Martinez</authors>
+    <owners>jorgehmv</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/jorgehmv/Fody.DependencyInjection</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automatic Spring.Net dependency injection with Fody addins.</description>
+    <language>en-US</language>
+    <tags>Spring.Net, Fody, IoC, ILWeaving, Cecil</tags>
+    <dependencies>
+      <dependency id="Fody"/>
+    </dependencies>
+  </metadata>
+</package>
